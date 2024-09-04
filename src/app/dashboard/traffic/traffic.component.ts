@@ -1,16 +1,13 @@
-import { Component, Input } from '@angular/core';
-
-interface TrafficData {
-  id: number;
-  value: number;
-}
+import { Component } from '@angular/core';
+import { DashboardItemComponent } from '../dashboard-item/dashboard-item.component';
 
 @Component({
-  selector: 'app-traffic-chart',
+  selector: 'app-traffic',
   standalone: true,
-  templateUrl: './traffic-chart.component.html',
+  imports: [DashboardItemComponent],
+  templateUrl: './traffic.component.html',
 })
-export class TrafficChartComponent {
+export class TrafficComponent {
   dummyTrafficData = [
     { id: 'd1', value: 433 },
     { id: 'd2', value: 260 },
