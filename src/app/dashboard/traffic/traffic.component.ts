@@ -6,6 +6,7 @@ import { DashboardItemComponent } from '../dashboard-item/dashboard-item.compone
   standalone: true,
   imports: [],
   templateUrl: './traffic.component.html',
+  styleUrls: ['./traffic.component.css'],
 })
 export class TrafficComponent {
   dummyTrafficData = [

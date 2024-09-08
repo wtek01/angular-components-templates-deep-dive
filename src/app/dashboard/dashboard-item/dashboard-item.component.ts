@@ -6,6 +6,7 @@ import { CommonModule } from '@angular/common';
   standalone: true,
   imports: [CommonModule],
   templateUrl: './dashboard-item.component.html',
+  styleUrls: ['./dashboard-item.component.css'],
 })
 export class DashboardItemComponent {
   @Input({ required: true }) image!: { src: string; alt: string };
