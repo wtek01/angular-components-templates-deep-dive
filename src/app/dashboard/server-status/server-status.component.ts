@@ -1,10 +1,9 @@
 import { Component, Input } from '@angular/core';
-import { DashboardItemComponent } from '../dashboard-item/dashboard-item.component';
 
 @Component({
   selector: 'app-server-status',
   standalone: true,
-  imports: [DashboardItemComponent],
+  imports: [],
   templateUrl: './server-status.component.html',
 })
 export class ServerStatusComponent {

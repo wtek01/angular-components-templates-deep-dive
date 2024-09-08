@@ -4,7 +4,7 @@ import { DashboardItemComponent } from '../dashboard-item/dashboard-item.compone
 @Component({
   selector: 'app-traffic',
   standalone: true,
-  imports: [DashboardItemComponent],
+  imports: [],
   templateUrl: './traffic.component.html',
 })
 export class TrafficComponent {

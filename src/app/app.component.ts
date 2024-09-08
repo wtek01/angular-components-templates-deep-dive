@@ -12,8 +12,8 @@ import { DashboardItemComponent } from './dashboard/dashboard-item/dashboard-ite
   imports: [
     CommonModule,
     HeaderComponent,
-    ServerStatusComponent,
     DashboardItemComponent,
+    ServerStatusComponent,
     TrafficComponent,
     TicketsComponent,
   ],
