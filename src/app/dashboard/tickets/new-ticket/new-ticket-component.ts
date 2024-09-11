@@ -1,4 +1,10 @@
-import { Component, Input } from '@angular/core';
+import {
+  Component,
+  ElementRef,
+  Input,
+  viewChild,
+  ViewChild,
+} from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { ButtonComponent } from '../../../shared/button/button.component';
 import { ControlComponent } from '../../../shared/control/control.component';
@@ -11,14 +17,14 @@ import { ControlComponent } from '../../../shared/control/control.component';
   imports: [FormsModule, ButtonComponent, ControlComponent],
 })
 export class NewTicketComponent {
+  //@ViewChild('form') private form?: ElementRef<HTMLFormElement>;
+  private form = viewChild.required<ElementRef<HTMLFormElement>>('form');
+
   @Input() title: string = '';
   @Input() request: string = '';
 
-  submitTicket() {
-    console.log(
-      'Submit ticket',
-      `Title: ${this.title}, Request: ${this.request}`
-    );
-    // Add logic to send the ticket to the server or perform any other necessary action
+  onSubmitTicket(title: string, textTicket: string) {
+    console.log(title, textTicket);
+    this.form().nativeElement.reset();
   }
 }
