@@ -1,2 +1,12 @@
-<span><ng-content /></span>
-<span class="icon"><ng-content select=".icon" /></span>
+<span>
+  <ng-content>
+    <!-- Default content if no content is provided -->
+    Button
+  </ng-content>
+</span>
+<span class="icon">
+  <ng-content select=".icon">
+    <!-- Default icon if no icon content is provided -->
+    ⚙️
+  </ng-content>
+</span>
