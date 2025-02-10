@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { NewTicketComponent } from './new-ticket/new-ticket-component';
 import { Ticket } from './tickets.model';
-import { TicketComponent } from "./ticket/ticket.component";
+import { TicketsService } from './tickets.service';
+import { NewTicketComponent } from './new-ticket/new-ticket-component';
+import { TicketComponent } from './ticket/ticket.component';
 
 @Component({
   selector: 'app-tickets',
@@ -12,43 +13,24 @@ import { TicketComponent } from "./ticket/ticket.component";
 })
 export class TicketsComponent implements OnInit {
   tickets: Ticket[] = [];
-  private readonly STORAGE_KEY = 'tickets';
+
+  constructor(private ticketsService: TicketsService) {}
 
   ngOnInit() {
-    // Charger les tickets depuis le localStorage au démarrage
-    const savedTickets = localStorage.getItem(this.STORAGE_KEY);
-    if (savedTickets) {
-      this.tickets = JSON.parse(savedTickets);
-    }
+    this.ticketsService.getTickets().subscribe(tickets => {
+      this.tickets = tickets;
+    });
   }
 
-  onAddTicket(ticket: {title: string; text: string}) {
-    const newTicket: Ticket = {
-      id: crypto.randomUUID(),
-      title: ticket.title,
-      request: ticket.text,
-      status: 'open',
-    };
-    
-    this.tickets.unshift(newTicket);
-    // Sauvegarder dans le localStorage après ajout
-    this.saveTickets();
+  onAddTicket(ticketData: { title: string; request: string }) {
+    this.ticketsService.addTicket(ticketData.title, ticketData.request);
   }
 
-  public saveTickets() {
-    localStorage.setItem(this.STORAGE_KEY, JSON.stringify(this.tickets));
-  }
-
-  onCloseTicket(newStatus: 'open' | 'closed', ticketId: string) {
-    const ticket = this.tickets.find(t => t.id === ticketId);
-    if (ticket) {
-      ticket.status = newStatus;
-      this.saveTickets();
-    }
+  onCloseTicket(status: 'open' | 'closed', ticketId: string) {
+    this.ticketsService.updateTicketStatus(ticketId, status);
   }
 
   onDeleteTicket(ticketId: string) {
-    this.tickets = this.tickets.filter(t => t.id !== ticketId);
-    this.saveTickets();
+    this.ticketsService.deleteTicket(ticketId);
   }
 }

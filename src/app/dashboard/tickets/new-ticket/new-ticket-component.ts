@@ -4,7 +4,6 @@ import {
   EventEmitter,
   Input,
   Output,
-  viewChild,
   ViewChild,
 } from '@angular/core';
 import { FormsModule } from '@angular/forms';
@@ -20,12 +19,11 @@ import { Ticket } from '../tickets.model';
   imports: [FormsModule, ButtonComponent, ControlComponent],
 })
 export class NewTicketComponent {
-  //@ViewChild('form') private form?: ElementRef<HTMLFormElement>;
-  private form = viewChild.required<ElementRef<HTMLFormElement>>('form');
-  @Output() add = new EventEmitter<{title: string; text: string}>();
+  @ViewChild('form', { static: true }) private form!: ElementRef<HTMLFormElement>;
+  @Output() add = new EventEmitter<{title: string; request: string}>();
 
-  onSubmitTicket(title: string, ticketText: string) {
-    this.add.emit({title, text: ticketText});
-    this.form().nativeElement.reset();
+  onSubmitTicket(title: string, request: string) {
+    this.add.emit({title, request});
+    this.form.nativeElement.reset();
   }
 }

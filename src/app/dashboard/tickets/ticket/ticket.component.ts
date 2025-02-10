@@ -9,7 +9,7 @@ import { Ticket } from '../tickets.model';
   styleUrls: ['./ticket.component.css']
 })
 export class TicketComponent {
-  @Input({ required: true }) ticket!: Ticket;
+  @Input({}) ticket!: Ticket;
   @Output() markAsCompleted = new EventEmitter<{status: 'open' | 'closed', ticketId: string}>();
   @Output() deleteTicket = new EventEmitter<{ticketId: string}>();
   isExpanded = false;
