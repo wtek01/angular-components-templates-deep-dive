@@ -2,17 +2,41 @@
   display: flex;
   flex-direction: column;
   gap: 1.5rem;
+  height: 100vh;
+  padding: 1rem;
+  box-sizing: border-box;
 }
 
 :host ul {
   list-style: none;
   margin: 0;
-  padding: 0;
-  width: 15rem;
+  padding-right: 8px; 
+  padding-left: 0;
+  padding-top: 0;
+  padding-bottom: 0;
+  width: 12.5rem;
+  overflow-y: scroll; 
+  scrollbar-gutter: stable; 
+  scrollbar-width: thin;
+  scrollbar-color: #4f4b53 transparent;
+}
+
+:host ul::-webkit-scrollbar {
+  width: 8px;
+}
+
+:host ul::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+:host ul::-webkit-scrollbar-thumb {
+  background-color: #4f4b53;
+  border-radius: 4px;
 }
 
 :host li {
   margin: 0.5rem 0;
+  width: calc(100% - 8px);
 }
 
 :host p {
@@ -26,8 +50,14 @@
   color: #38343c;
 }
 
+/* Ajuster le responsive */
 @media (min-width: 768px) {
   :host {
     flex-direction: row;
+    padding: 1.5rem;
+  }
+
+  :host ul {
+    height: calc(100vh - 3rem); /* Ajuster la hauteur en mode desktop */
   }
 }
